@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <div id="renderChart"></div>
+    <div id="msg"></div>
+    <script src="../js/jsapi.js"></script>
+    <script type="text/javascript">
+
+        google.load('visualization', '1', { 'packages': ['corechart'] });
+        google.setOnLoadCallback(desenhaGrafico);
+
+        function desenhaGrafico() {
+            var dados = new google.visualization.DataTable();
+
+            dados.addColumn('string', 'Tipo');
+            dados.addColumn('number', 'Valor');
+
+            dados.addRows(3);
+
+            dados.setValue(0, 0, 'Alimentação');
+            dados.setValue(0, 1, 450.50);
+
+            dados.setValue(1, 0, 'Transporte');
+            dados.setValue(1, 1, 165.70);
+
+            dados.setValue(2, 0, 'Cursos');
+            dados.setValue(2, 1, 150.00);
+
+            var grafico = new google.visualization.PieChart(document.getElementById('renderChart'));
+
+            var options = {
+                title: 'Gastos',
+                width: 600,
+                height: 400,
+                vAxis: { title: 'Valor' },
+                hAxis: { title: 'Tipo' }
+            }
+
+            grafico.draw(dados, options);
+            google.visualization.events.addListener(grafico, 'select', avisoDoClique);
+
+
+        }
+
+        function avisoDoClique(event) {
+            //alert('Botão clicado!');
+            document.getElementById('msg').innerHTML += "Gráfico foi clicado e algum pedaço escolhido...<br/>";
+        }
+
+    </script>
+</body>
+</html>

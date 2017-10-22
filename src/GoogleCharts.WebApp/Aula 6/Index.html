@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title></title>
+</head>
+<body>
+    <div id="renderChart"></div>
+
+    <script src="../js/jsapi.js"></script>
+    <script type="text/javascript">
+
+        google.load('visualization', '1', { 'packages': ['corechart'] });
+        google.setOnLoadCallback(desenhaGrafico);
+
+        function desenhaGrafico() {
+            var wrapper = new google.visualization.ChartWrapper({
+                dataSourceUrl: 'https://raw.githubusercontent.com/caelum/caelum-online/master/google-chart-tools/07-dados.json',
+                chartType: 'AreaChart',
+                containerId: 'renderChart',
+                options: { width: 900, height: 400 }
+            });
+
+            wrapper.draw();
+        }
+
+    </script>
+
+</body>
+</html>

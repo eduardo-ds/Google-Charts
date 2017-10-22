@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <div id="renderChart"></div>
+
+    <script src="../js/jsapi.js"></script>
+    <script type="text/javascript">
+        google.load('visualization', '1', { 'packages': ['corechart'] });
+        google.setOnLoadCallback(desenhaGrafico);
+
+        function desenhaGrafico() {
+
+            var dados = new google.visualization.DataTable();
+
+            dados.addColumn('string', 'Mês');
+            dados.addColumn('number', 'Gastos');
+            dados.addRows(5);
+
+            dados.setValue(0, 0, 'Janeiro');
+            dados.setValue(0, 1, 20450.0);
+
+            dados.setValue(1, 0, 'Fevereiro');
+            dados.setValue(1, 1, 21870.0);
+
+            dados.setValue(2, 0, 'Março');
+            dados.setValue(2, 1, 22250.0);
+
+            dados.setValue(3, 0, 'Abril');
+            dados.setValue(3, 1, 25500.0);
+
+            dados.setValue(4, 0, 'Maio');
+            dados.setValue(4, 1, 23560.0);
+
+            var grafico = new google.visualization.ColumnChart(document.getElementById('renderChart'));
+
+            var options = {
+                title: 'Gastos',
+                width: 600,
+                height: 400,
+                vAxis: { title: 'Valor' }, 
+                hAxis: { title:'Mês'}
+            }
+
+            var formatter = new google.visualization.NumberFormat(
+                { prefix: 'R$', negativeColor: 'red', negativeParens: true });
+
+            formatter.format(dados, 1); // Apply formatter to second column
+
+            grafico.draw(dados, options);
+
+        }
+
+    </script>
+</body>
+</html>

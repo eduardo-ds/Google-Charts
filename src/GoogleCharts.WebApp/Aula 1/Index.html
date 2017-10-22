@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <h1>Relatório de Linhas</h1>
+    <div id="renderChart"></div>
+
+
+    <script src="../js/jsapi.js"></script>
+    <script type="text/javascript">
+
+        google.load('visualization', '1', { 'packages': ['corechart'] });
+        google.setOnLoadCallback(desenhaGrafico);
+
+        function desenhaGrafico() {
+            console.log('pronto para desenhar');
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Mês');
+            data.addColumn('number', 'Gastos em R$');
+
+            data.addRows(5);
+
+            data.setValue(0, 0, 'Janeiro');
+            data.setValue(0, 1, 20450.0);
+
+            data.setValue(1, 0, 'Fevereiro');
+            data.setValue(1, 1, 21870.0);
+
+            data.setValue(2, 0, 'Março');
+            data.setValue(2, 1, 22250.0);
+
+            data.setValue(3, 0, 'Abril');
+            data.setValue(3, 1, 2550.0);
+
+            data.setValue(4, 0, 'Maio');
+            data.setValue(4, 1, 25560.0);
+
+            var chart = new google.visualization.LineChart(document.getElementById("renderChart"));
+
+            chart.draw(data, { width: 800, height: 600 });
+        }
+
+    </script>
+
+</body>
+</html>

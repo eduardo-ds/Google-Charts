@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Saldo de Contas</h1>
+    <div id="renderChart"></div>
+
+    <script src="../js/jsapi.js"></script>
+    <script type="text/javascript">
+
+        google.load('visualization', '1', { 'packages': ['corechart'] });
+        google.setOnLoadCallback(desenhaGrafico);
+
+        function desenhaGrafico() {
+
+            var dados = new google.visualization.DataTable();
+            dados.addColumn('date', 'Dia');
+            dados.addColumn('number', 'Conta Corrente');
+            dados.addColumn('number', 'Conta Investimento');
+
+            dados.addRows(5);
+
+            dados.setValue(0, 0, new Date(2011,01,07));
+            dados.setValue(0, 1, 10450.0);
+            dados.setValue(0, 2, 2020.90);
+
+            dados.setValue(1, 0, new Date(2011, 01, 08));
+            dados.setValue(1, 1, 12050.0);
+            dados.setValue(1, 2, 6050.52);
+
+            dados.setValue(2, 0, new Date(2011, 01, 09));
+            dados.setValue(2, 1, 13250.0);
+            dados.setValue(2, 2, 8050.65);
+
+            dados.setValue(3, 0, new Date(2011, 01, 10));
+            dados.setValue(3, 1, 12490.0);
+            dados.setValue(3, 2, 13490.50);
+
+            dados.setValue(4, 0, new Date(2011, 01, 11));
+            dados.setValue(4, 1, 10550.0);
+            dados.setValue(4, 2, 11550.50);
+
+            var options = {
+                title: 'Minhas Contas',
+                width: 900,
+                height: 500,
+                hAxis: {
+                    format: 'dd/MM/yyyy',
+                    /*gridlines: { count: 5 }*/
+                },
+                /*
+                vAxis: {
+                    gridlines: { color: 'none' },
+                    minValue: 0
+                }
+                */
+            };
+
+
+            var div = document.getElementById("renderChart");
+            var grafico = new google.visualization.LineChart(div);
+
+            grafico.draw(dados, options);
+        }
+
+
+    </script>
+</body>
+</html>
